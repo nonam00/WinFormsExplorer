@@ -1,4 +1,4 @@
-using System.IO;
+using System.Diagnostics;
 
 namespace WinFormsExplorerApp
 {
@@ -214,6 +214,20 @@ namespace WinFormsExplorerApp
 
 			listDir.Items.Clear();
 			FillDirList(treeDirs.SelectedNode.FullPath);
+		}
+
+		private void listDir_ItemActivate(object sender, EventArgs e)
+		{
+			string fullPath = $"{treeDirs.SelectedNode.FullPath}\\{listDir.SelectedItems[0].Text}";
+
+			ProcessStartInfo startInfo = new ProcessStartInfo
+			{
+				FileName = fullPath,
+				UseShellExecute = true
+			};
+
+			Process.Start(startInfo);
+			//MessageBox.Show(fullPath);
 		}
 	}
 }

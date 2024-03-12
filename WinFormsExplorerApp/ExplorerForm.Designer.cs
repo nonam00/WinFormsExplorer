@@ -158,6 +158,7 @@
 			listDir.TabIndex = 0;
 			listDir.UseCompatibleStateImageBehavior = false;
 			listDir.View = View.List;
+			listDir.ItemActivate += listDir_ItemActivate;
 			// 
 			// fileName
 			// 
