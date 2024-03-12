@@ -218,15 +218,19 @@ namespace WinFormsExplorerApp
 
 		private void listDir_ItemActivate(object sender, EventArgs e)
 		{
-			string fullPath = $"{treeDirs.SelectedNode.FullPath}\\{listDir.SelectedItems[0].Text}";
-
-			ProcessStartInfo startInfo = new ProcessStartInfo
+			ListViewItem item = listDir.SelectedItems[0];
+            if (!item.SubItems[1].Text.Equals("<dir>"))
 			{
-				FileName = fullPath,
-				UseShellExecute = true
-			};
+				string fullPath = $"{treeDirs.SelectedNode.FullPath}\\{listDir.SelectedItems[0].Text}";
 
-			Process.Start(startInfo);
+				ProcessStartInfo startInfo = new ProcessStartInfo
+				{
+					FileName = fullPath,
+					UseShellExecute = true
+				};
+
+				Process.Start(startInfo);
+			}
 			//MessageBox.Show(fullPath);
 		}
 	}
